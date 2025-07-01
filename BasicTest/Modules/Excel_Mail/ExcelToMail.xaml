@@ -1,0 +1,39 @@
+﻿<Window x:Class="BasicTest.ExcelToMail"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BasicTest"
+        mc:Ignorable="d"
+        Title="读取Excel文件群发邮件" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Excel地址：" FontSize="18" Margin="30 30 0 0"/>
+        <TextBox Grid.Row="0" Grid.Column="1" x:Name="ExcelPath" FontSize="18" Margin="10 30 0 0" Width="300"/>
+        <Button Grid.Row="0" Grid.Column="2" Content="选择Excel" FontSize="18" Click="SelectExcel_Click" Width="120" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 30 0 0"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="发送人邮箱：" FontSize="18" Margin="30 20 0 0"/>
+        <TextBox Grid.Row="1" Grid.Column="1" x:Name="MailSenderAddress" FontSize="18" Margin="10 20 0 0" Width="300"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="邮箱授权码：" FontSize="18" Margin="30 20 0 0"/>
+        <TextBox Grid.Row="2" Grid.Column="1" x:Name="MailPass" FontSize="18" Margin="10 20 0 0" Width="300"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="发送人姓名：" FontSize="18" Margin="30 20 0 0"/>
+        <TextBox Grid.Row="3" Grid.Column="1" x:Name="MailSenderName" FontSize="18" Margin="10 20 0 0" Width="300"/>
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="邮件主题：" FontSize="18" Margin="30 20 0 0"/>
+        <TextBox Grid.Row="4" Grid.Column="1" x:Name="MailSubject" FontSize="18" Margin="10 20 0 0" Width="300"/>
+        <TextBlock Grid.Row="5" Grid.Column="0" Text="邮件内容：" FontSize="18" Margin="30 20 0 0"/>
+        <TextBox Grid.Row="5" Grid.Column="1" x:Name="MailContent" FontSize="18" Margin="10 20 0 0" Width="300"/>
+        <Button Grid.Row="6" Grid.Column="2" Content="发送邮件" FontSize="18" Click="SendMail_Click" Width="120" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 20 0 0"/>
+    </Grid>
+</Window>

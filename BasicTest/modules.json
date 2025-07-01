@@ -1,0 +1,37 @@
+[
+  {
+    "Id": "mysql-connection",
+    "DisplayName": "MySQL数据库连接",
+    "TypeName": "BasicTest.MySQLConn",
+    "AssemblyName": "BasicTest",
+    "IsEnabled": true
+  },
+  {
+    "Id": "excel-mail",
+    "DisplayName": "Excel群发邮件",
+    "TypeName": "BasicTest.ExcelToMail",
+    "AssemblyName": "BasicTest",
+    "IsEnabled": true
+  },
+  {
+    "Id": "npoi-excel",
+    "DisplayName": "NPOI读取Excel",
+    "TypeName": "BasicTest.NPOIDemo",
+    "AssemblyName": "BasicTest",
+    "IsEnabled": true
+  },
+  {
+    "Id": "linq-demo1",
+    "DisplayName": "LINQ小练习",
+    "TypeName": "BasicTest.LINQDemo1",
+    "AssemblyName": "BasicTest",
+    "IsEnabled": true
+  },
+  {
+    "Id": "wpf-doubleColorBall",
+    "DisplayName": "双色球实现",
+    "TypeName": "BasicTest.DoubleColorBall",
+    "AssemblyName": "BasicTest",
+    "IsEnabled": true
+  }
+]

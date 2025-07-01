@@ -1,0 +1,35 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- 红球样式 -->
+    <Style x:Key="RedBallTextBlockStyle" TargetType="TextBlock">
+        <Setter Property="Margin" Value="20 10 10 0"/>
+        <Setter Property="Width" Value="30"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Background" Value="Red"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="20"/>
+    </Style>
+
+    <!-- 篮球样式 -->
+    <Style x:Key="BlueBallTextBlockStyle" TargetType="TextBlock">
+        <Setter Property="Margin" Value="50 10 0 0"/>
+        <Setter Property="Width" Value="30"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Background" Value="Blue"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="20"/>
+    </Style>
+
+    <Style x:Key="GroupBoxStyle" TargetType="GroupBox">
+        <Setter Property="Margin" Value="10"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Foreground" Value="Green"/>
+        <Setter Property="Background" Value="AliceBlue"/>
+    </Style>
+</ResourceDictionary>
