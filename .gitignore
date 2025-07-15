@@ -28,7 +28,6 @@ __pycache__
 # Auto-generated files
 *.g.cs
 *.g.i.cs
-*.designer.cs
 
 # NuGet packages
 *.nupkg
