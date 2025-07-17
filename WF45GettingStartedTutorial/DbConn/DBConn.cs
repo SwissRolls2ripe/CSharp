@@ -15,5 +15,13 @@ namespace DbConn
             Configuration config = ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
             ConnectionString = config.ConnectionStrings.ConnectionStrings["SQLServerConn"].ConnectionString;
         }
+
+        //Db.config 文件内容示例
+        // <?xml version="1.0" encoding="utf-8" ?>
+        // <configuration>
+        //   <connectionStrings>
+        //     <add name="SQLServerConn" connectionString="Server=XXXX;Initial Catalog=WF45GettingStartedTutorial;User ID=XXXX;Password=XXXX;" />
+        //   </connectionStrings>
+        // </configuration>
     }
 }
