@@ -51,3 +51,4 @@ packages/
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
 .history
+WF45GettingStartedTutorial/DbConn/Db.config
