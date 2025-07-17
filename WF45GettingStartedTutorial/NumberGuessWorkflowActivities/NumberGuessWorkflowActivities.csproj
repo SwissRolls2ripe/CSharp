@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F144AF53-9CB9-4BC6-BA80-9E608EAE2987}</ProjectGuid>
+    <ProjectGuid>{3F0E43F7-5507-4D9C-AAF4-9F0FDBF3B199}</ProjectGuid>
     <ProjectTypeGuids>{32f31d43-81cc-4c15-9de6-3fc5453562b6};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -18,7 +18,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -49,24 +49,18 @@
     <Compile Include="ReadInt.cs" />
   </ItemGroup>
   <ItemGroup>
-    <XamlAppDef Include="Prompt.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </XamlAppDef>
-  </ItemGroup>
-  <ItemGroup>
     <XamlAppDef Include="FlowchartNumberGuessWorkflow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </XamlAppDef>
-  </ItemGroup>
-  <ItemGroup>
+    <XamlAppDef Include="Prompt.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </XamlAppDef>
     <XamlAppDef Include="SequentialNumberGuessWorkflow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </XamlAppDef>
-  </ItemGroup>
-  <ItemGroup>
     <XamlAppDef Include="StateMachineNumberGuessWorkflow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

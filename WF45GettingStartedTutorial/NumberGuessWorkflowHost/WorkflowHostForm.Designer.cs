@@ -98,7 +98,10 @@
             this.WorkflowType.Items.AddRange(new object[] {
             "StateMachineNumberGuessWorkflow",
             "FlowchartNumberGuessWorkflow",
-            "SequentialNumberGuessWorkflow"});
+            "SequentialNumberGuessWorkflow",
+            "StateMachineNumberGuessWorkflow v1",
+            "FlowchartNumberGuessWorkflow v1",
+            "SequentialNumberGuessWorkflow v1"});
             this.WorkflowType.Location = new System.Drawing.Point(144, 73);
             this.WorkflowType.Name = "WorkflowType";
             this.WorkflowType.Size = new System.Drawing.Size(357, 28);

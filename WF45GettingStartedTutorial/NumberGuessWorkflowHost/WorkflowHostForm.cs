@@ -11,12 +11,13 @@ using System.Activities;
 using System.Activities.DurableInstancing;
 using System.Data.SqlClient;
 using System.IO;
+using System.Activities.Tracking;
 
 namespace NumberGuessWorkflowHost
 {
     public partial class WorkflowHostForm : Form
     {
-        const string connectionString = "Server=XXXX;Initial Catalog=WF45GettingStartedTutorial;User ID=XXXX;Password=XXXX;";
+        readonly string connectionString;
         SqlWorkflowInstanceStore store;
         bool workflowStarting;
         public Guid WorkflowInstanceId
@@ -29,12 +30,14 @@ namespace NumberGuessWorkflowHost
         public WorkflowHostForm()
         {
             InitializeComponent();
+            connectionString = DbConn.DBConn.ConnectionString;
         }
 
         private void WorkflowHostForm_Load(object sender, EventArgs e)
         {
             // Initialize the store and configure it so that it can be used for
             // multiple WorkflowApplication instances.
+            //InstanceCompletionAction = InstanceCompletionAction.DeleteAll; 实例完成时从持久化存储中删除。
             store = new SqlWorkflowInstanceStore(connectionString);
             WorkflowApplication.CreateDefaultInstanceOwner(store, null, WorkflowIdentityFilter.Any);
 
@@ -76,6 +79,14 @@ namespace NumberGuessWorkflowHost
 
             // Clear the status window.
             WorkflowStatus.Clear();
+
+            // If there is tracking data for this workflow, display it  
+            // in the status window.  
+            if (File.Exists(WorkflowInstanceId.ToString()))
+            {
+                string status = File.ReadAllText(WorkflowInstanceId.ToString());
+                UpdateStatus(status);
+            }
 
             // Get the workflow version and display it.
             // If the workflow is just starting then this info will not
@@ -140,6 +151,25 @@ namespace NumberGuessWorkflowHost
             var sw = new StringWriter();
             wfApp.Extensions.Add(sw);
 
+            // Add the custom tracking participant with a tracking profile  
+            // that only emits tracking records for WriteLine activities.  
+            StatusTrackingParticipant stp = new StatusTrackingParticipant
+            {
+                TrackingProfile = new TrackingProfile
+                {
+                    Queries =
+                    {
+                        new ActivityStateQuery
+                        {
+                            ActivityName = "WriteLine",
+                            States = { ActivityStates.Executing },
+                            Arguments = { "Text" }
+                        }
+                    }
+                }
+            };
+            wfApp.Extensions.Add(stp);
+
             wfApp.Completed = delegate (WorkflowApplicationCompletedEventArgs e)
             {
                 if (e.CompletionState == ActivityInstanceState.Faulted)
@@ -161,6 +191,8 @@ namespace NumberGuessWorkflowHost
 
             wfApp.Aborted = delegate (WorkflowApplicationAbortedEventArgs e)
             {
+                //GameOver 方法不从 Aborted 处理程序中调用，因为在工作流实例中止时，它并未终止，且以后可能恢复实例。
+                //SQL Server 繁忙，或者因为连接暂时丢失，会触发这个异常。
                 UpdateStatus($"Workflow Aborted. Exception: {e.Reason.GetType().FullName}\r\n{e.Reason.Message}");
             };
 
@@ -179,7 +211,7 @@ namespace NumberGuessWorkflowHost
                 {
                     UpdateStatus(writer.ToString());
                 }
-                return PersistableIdleAction.Unload;
+                return PersistableIdleAction.Unload; // 工作流持久保存并卸载，释放内存资源。
             };
         }
 
@@ -202,11 +234,23 @@ namespace NumberGuessWorkflowHost
                 case "FlowchartNumberGuessWorkflow":
                     identity = WorkflowVersionMap.FlowchartNumberGuessIdentity;
                     break;
-            }
-            ;
+
+                case "SequentialNumberGuessWorkflow v1":
+                    identity = WorkflowVersionMap.SequentialNumberGuessIdentity_v1;
+                    break;
+
+                case "StateMachineNumberGuessWorkflow v1":
+                    identity = WorkflowVersionMap.StateMachineNumberGuessIdentity_v1;
+                    break;
+
+                case "FlowchartNumberGuessWorkflow v1":
+                    identity = WorkflowVersionMap.FlowchartNumberGuessIdentity_v1;
+                    break;
+            };
 
             Activity wf = WorkflowVersionMap.GetWorkflowDefinition(identity);
 
+            //新建一个 WorkflowApplication 实例
             var wfApp = new WorkflowApplication(wf, inputs, identity);
 
             // Add the workflow to the list and display the version information.
@@ -240,8 +284,6 @@ namespace NumberGuessWorkflowHost
                 return;
             }
 
-            UpdateStatus(guess.ToString());
-
             WorkflowApplicationInstance instance =
                 WorkflowApplication.GetInstance(WorkflowInstanceId, store);
 
@@ -251,6 +293,7 @@ namespace NumberGuessWorkflowHost
                 WorkflowVersionMap.GetWorkflowDefinition(instance.DefinitionIdentity);
 
             // Associate the WorkflowApplication with the correct definition
+            // “接续之前”的一个工作流
             var wfApp = new WorkflowApplication(wf, instance.DefinitionIdentity);
 
             // Configure the extensions and lifecycle handlers.
@@ -285,6 +328,7 @@ namespace NumberGuessWorkflowHost
             Activity wf = WorkflowVersionMap.GetWorkflowDefinition(instance.DefinitionIdentity);
 
             // Associate the WorkflowApplication with the correct definition
+            // “接续之前”的一个工作流
             var wfApp = new WorkflowApplication(wf, instance.DefinitionIdentity);
 
             // Configure the extensions and lifecycle handlers
