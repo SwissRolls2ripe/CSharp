@@ -52,3 +52,4 @@ packages/
 # Ignore all local history of files
 .history
 WF45GettingStartedTutorial/DbConn/Db.config
+/WF45GettingStartedTutorial/DbConn/Db.config
