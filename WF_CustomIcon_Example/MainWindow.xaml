@@ -1,0 +1,32 @@
+﻿<Window x:Class="WF_CustomIcon_Example.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WF_CustomIcon_Example"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="800">
+    <Grid x:Name="MyGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+        
+        <!-- 工作流设计器视图 -->
+        <ContentControl x:Name="DesignerHost" Grid.Row="0"/>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Label Content="日志:" VerticalAlignment="Center" Margin="5"/>
+            <TextBox x:Name="LogTextBox" 
+                     Height="50" 
+                     Width="600"
+                     Margin="5"
+                     VerticalScrollBarVisibility="Auto"
+                     TextWrapping="Wrap"/>
+        </StackPanel>
+
+        <!-- 运行按钮 -->
+        <Button x:Name="RunButton" Grid.Row="2" Content="运行工作流" Click="RunButton_Click" Width="80" Height="40" HorizontalAlignment="Left" Margin="20 0 0 0"/>
+    </Grid>
+</Window>
