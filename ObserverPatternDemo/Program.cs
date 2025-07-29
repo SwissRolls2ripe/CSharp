@@ -1,7 +1,7 @@
 ﻿using ObserverPatternDemo.Core;
+using ObserverPatternDemo.Interfaces;
 using ObserverPatternDemo.Models;
 using ObserverPatternDemo.Observers;
-using ObserverPatternDemo.Interfaces;
 
 namespace ObserverPatternDemo
 {
@@ -82,19 +82,12 @@ namespace ObserverPatternDemo
             Console.WriteLine("演示手动释放观察者资源...");
 
             var observers = loginManager.Observers;
-            while (observers.Count > 0) 
+            foreach (var observer in observers)
             {
-                // 获取第一个观察者
-                var observer = observers.FirstOrDefault();
-                if (observer == null) break;
-                
-                // 取消订阅
                 loginManager.Unsubscribe(observer);
-                
-                // 更新观察者列表
-                observers = loginManager.Observers;
             }
 
+            Console.WriteLine($"当前观察者数量: {loginManager.Observers.Count}");
             Console.WriteLine("观察者资源已释放");
         }
 

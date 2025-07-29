@@ -20,7 +20,7 @@ namespace ObserverPatternDemo.Core
             {
                 lock (_lockObject)
                 {
-                    return _observers;
+                    return new List<IObserver>(_observers);
                 }
             }
         }
