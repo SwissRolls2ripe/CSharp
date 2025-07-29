@@ -40,15 +40,14 @@ packages/
 # Others
 *.DS_Store
 
-### VisualStudioCode ###
-.vscode/*
-.vscode/**
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+# Visual Studio Code files
+.vscode
 
-### VisualStudioCode Patch ###
-# Ignore all local history of files
+# local history of files
 .history
+
+# specific configuration files
 /WF45GettingStartedTutorial/DbConn/Db.config
+
+# Augment Code files
+.augment
