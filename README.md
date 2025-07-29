@@ -12,3 +12,5 @@ C#相关项目：
 5、WF_CustomIcon_Example：WF自定义图标示例
 
 6、EnhancedWorkflowActivities：WF书签、跟踪项目
+
+7. ObserverPatternDemo：观察者模式示例项目
