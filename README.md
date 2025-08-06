@@ -14,3 +14,5 @@ C#相关项目：
 6、EnhancedWorkflowActivities：WF书签、跟踪项目
 
 7、ObserverPatternDemo：观察者模式示例项目
+
+8、AccessOfficeInteropObjects：Excel、Word简单操作项目
